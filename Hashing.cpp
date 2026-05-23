@@ -9,6 +9,7 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include<unordered_set>
 using namespace std;
 
 bool ispalindrome(const string &sp){
@@ -26,15 +27,32 @@ bool ispalindrome(const string &sp){
     return true;
 }
 
+
+bool containsDuplicate(vector<int>& nums) {
+
+        unordered_set<int> list;
+
+        for(int i = 0; i < nums.size(); i++){
+            if(list.count(nums[i])){
+                return true;
+            }
+            list.insert(nums[i]);
+        }
+        return false;
+        
+    }
+
 int main()
 {
     string sp = "abba";
-    bool result = ispalindrome(sp);
-    if(result){
-        cout << "Palindrome";
-    }
-    else cout << "Not Palindrome";
+    bool PalindromeResult = ispalindrome(sp);
+    cout << (PalindromeResult ? "Palindrome" : "Not Palindrome") << endl;
     
+    vector<int> pk = {1,2,3,4,0,1};
+    
+    bool DuplicateResult = containsDuplicate(pk);
+    cout << (DuplicateResult ? "Contains Duplicate" : "Doesnot contain duplicate") << endl;
+
     return 0;
     
 }
